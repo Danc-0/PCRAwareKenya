@@ -7,7 +7,7 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/
 import heroImage from "@assets/generated_images/professional_kenyan_private_security_guard_or_psra_concept.png";
 
 const EMAIL_RECIPIENT = "regulations@psra.go.ke";
-const EMAIL_BCC = "jt2500100@gmail.com"; 
+const EMAIL_BCC = "jt25400100@gmail.com"; 
 const EMAIL_SUBJECT = "Citizen Submission on Draft Private Security (General) Regulations AND Draft Private Security (Fidelity Fund Operations) Regulations, 2025";
 const EMAIL_BODY = `To the Director General,
 Private Security Regulatory Authority (PSRA),
