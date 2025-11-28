@@ -105,10 +105,20 @@ const staggerContainer = {
 
 export default function Home() {
   const handleEmailClick = () => {
-    const body = encodeURIComponent(EMAIL_BODY);
-    const subject = encodeURIComponent(EMAIL_SUBJECT);
-    const gmailUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=${EMAIL_RECIPIENT}&bcc=${EMAIL_BCC}&su=${subject}&body=${body}`;
-    window.open(gmailUrl, '_blank');
+    // Detect if user is on mobile device
+    const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+    
+    if (isMobile) {
+      // Use mailto: protocol for mobile - opens native Gmail app
+      const mailtoLink = `mailto:${EMAIL_RECIPIENT}?subject=${encodeURIComponent(EMAIL_SUBJECT)}&body=${encodeURIComponent(EMAIL_BODY)}&bcc=${EMAIL_BCC}`;
+      window.location.href = mailtoLink;
+    } else {
+      // Use Gmail web interface for desktop
+      const body = encodeURIComponent(EMAIL_BODY);
+      const subject = encodeURIComponent(EMAIL_SUBJECT);
+      const gmailUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=${EMAIL_RECIPIENT}&bcc=${EMAIL_BCC}&su=${subject}&body=${body}`;
+      window.open(gmailUrl, '_blank');
+    }
   };
 
   return (
@@ -159,12 +169,12 @@ export default function Home() {
               <span className="text-sm uppercase tracking-wide">Public Participation Open</span>
             </motion.div>
             
-            <motion.h1 variants={fadeIn} className="text-4xl md:text-6xl lg:text-7xl font-serif font-black text-white tracking-tight leading-[1.1] drop-shadow-lg">
-              A Call for Fairer <br/>
+            <motion.h1 variants={fadeIn} className="text-4xl md:text-6xl lg:text-7xl font-serif font-black tracking-tight leading-[1.1] drop-shadow-lg">
+              <span className="text-black">A Call for Fairer</span> <br/>
               <span className="text-yellow-400">Private Security Regulations</span>
             </motion.h1>
             
-            <motion.p variants={fadeIn} className="text-xl md:text-2xl text-white max-w-2xl leading-relaxed border-l-4 border-amber-500 pl-6 font-medium drop-shadow-md">
+            <motion.p variants={fadeIn} className="text-2xl md:text-3xl text-black max-w-2xl leading-relaxed border-l-4 border-amber-400 pl-6 font-bold drop-shadow-lg">
               Advocating for fair Fidelity Fund levy rates, SME protection, and transparent governance in the Draft Private Security (Fidelity Fund Operations) Regulations, 2025.
             </motion.p>
             
